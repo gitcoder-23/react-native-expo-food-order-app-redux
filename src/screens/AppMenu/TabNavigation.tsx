@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../HomeScreen';
+import { HomeScreen } from '../HomeScreen';
 import OfferScreen from '../OfferScreen';
 import CartScreen from '../CartScreen';
 import AccountScreen from '../AccountScreen';

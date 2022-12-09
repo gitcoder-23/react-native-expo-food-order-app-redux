@@ -1,5 +1,6 @@
 import { LocationGeocodedAddress } from 'expo-location';
 import { Dispatch } from 'redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface UpdateLocationAction {
   readonly type: 'ON_UPDATE_LOCATION';
@@ -20,10 +21,11 @@ export const onUpdateLocation = (location: LocationGeocodedAddress) => {
       if (!location) {
         console.log('Location details is empty->');
       } else {
-        console.log('Location details not empty-->', location);
+        console.log('Location details not empty-->', JSON.stringify(location));
       }
       // Save our location in local storage
       if (location) {
+        await AsyncStorage.setItem('user_location', JSON.stringify(location));
         dispatch({
           type: 'ON_UPDATE_LOCATION',
           payload: location,

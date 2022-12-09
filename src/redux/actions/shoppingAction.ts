@@ -18,6 +18,7 @@ export type ShoppingAction = AvailabilityAction | ShoppingErrorAction;
 
 // User action trigger from components
 export const onAvailability = (postCode: string) => {
+  console.log('Shopping-Action-postCode->', postCode);
   return async (dispatch: Dispatch<ShoppingAction>) => {
     try {
       const response = await axios.get<FoodAvailability>(
