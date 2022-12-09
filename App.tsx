@@ -6,6 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 // Screens
 import NavigationMenu from './src/screens/AppMenu/NavigationMenu';
+import { Provider } from 'react-redux';
+import { store } from './src/redux/store';
 
 const MainNavMenu = () => {
   return (
@@ -25,7 +27,9 @@ const MainNavMenu = () => {
 export default function App() {
   return (
     <>
-      <MainNavMenu />
+      <Provider store={store}>
+        <MainNavMenu />
+      </Provider>
     </>
   );
 }

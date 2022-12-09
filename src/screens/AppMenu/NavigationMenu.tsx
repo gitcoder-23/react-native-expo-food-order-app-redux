@@ -4,7 +4,7 @@ import {
   createStackNavigator,
   StackNavigationOptions,
 } from '@react-navigation/stack';
-import LandingScreen from '../LandingScreen';
+import { LandingScreen } from '../LandingScreen';
 import TabNavigation from './TabNavigation';
 
 export type NavigationMenuStackParamList = {

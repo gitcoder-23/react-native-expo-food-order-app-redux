@@ -8,14 +8,25 @@ import {
   View,
 } from 'react-native';
 import * as Location from 'expo-location';
+import { connect } from 'react-redux';
+import { ApplicationState } from '../redux/reducers';
+import { onUpdateLocation } from '../redux/actions/userAction';
+import { UserState } from '../redux/models';
 
 const screenWidth = Dimensions.get('screen').width;
 
 type LandingType = {
   navigation: any;
+  userReducer: UserState;
+  onUpdateLocation: Function;
 };
 
-const LandingScreen: React.FC<LandingType> = ({ navigation, ...props }) => {
+const _LandingScreen: React.FC<LandingType> = ({
+  navigation,
+  userReducer,
+  onUpdateLocation,
+  ...props
+}) => {
   // console.log('props->', props);
 
   const [locationAddress, setLocationAddress] = useState<{} | any>({});
@@ -75,6 +86,9 @@ const LandingScreen: React.FC<LandingType> = ({ navigation, ...props }) => {
       for (let addressItem of address) {
         console.log('addressItem->', addressItem);
         setGetAddress(addressItem);
+        // Reducer Called
+        onUpdateLocation(addressItem);
+
         let currentAddress = `${addressItem?.name}, ${addressItem?.street}, ${addressItem?.postalCode}, ${addressItem?.city}`;
 
         console.log('currentAddress->', currentAddress.length);
@@ -114,7 +128,15 @@ const LandingScreen: React.FC<LandingType> = ({ navigation, ...props }) => {
   );
 };
 
-export default LandingScreen;
+const mapToStateProps = (state: ApplicationState) => ({
+  userReducer: state.userReducer,
+});
+
+const LandingScreen = connect(mapToStateProps, { onUpdateLocation })(
+  _LandingScreen
+);
+
+export { LandingScreen };
 
 const styles = StyleSheet.create({
   container: {
