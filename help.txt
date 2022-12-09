@@ -1,0 +1,4 @@
+npx expo install expo-location
+
+// Enable Hermes
+https://docs.expo.dev/guides/using-hermes/
